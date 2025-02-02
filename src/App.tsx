@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import Movie from './Movie';
+import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
-
-type Movie = {
-  imdbID: string,
-  Type: string,
-  Title: string,
-  Year: string,
-  Poster: string
-}
+import Movies from './Movies';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -25,16 +20,12 @@ function App() {
 
   return (
   <div>
-      <h1>Movies</h1>
+      {/* <h1>Movies</h1> */}
 
-      <div className='movies'>
-        {
-          movies.map(x => (
-          <div key={x.imdbID} className='movie'>
-            <h3>{x.Title}</h3>
-            <img src={x.Poster} alt={x.Title}/>
-          </div>))
-        }
+      <div className='container-fluid movies'>
+        <div className='row'>
+          <Movies movies={movies}></Movies>
+        </div>
       </div>
 
     </div>
