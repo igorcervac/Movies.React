@@ -89,3 +89,17 @@ body {
 	padding: 20px;
 	text-align: center;
 }
+
+.movies-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchbox {
+  margin: 10px 0px;
+  min-width: 200px;
+}
+
+h1 {
+  font-weight: normal;
+}

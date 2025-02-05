@@ -5,6 +5,7 @@ import './App.css';
 import Movies from './components/Movies';
 import AddFavourite from './components/AddFavourite';
 import RemoveFavourite from './components/RemoveFavourite';
+import SearchBox from './components/SearchBox';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -16,7 +17,7 @@ function App() {
       const getMovies = async () => {
         const response = await fetch(`http://www.omdbapi.com?s=${search}&apikey=ebd94699`);
         const json = await response.json();
-        setMovies(json.Search);
+        setMovies(json.Search ?? []);
       }
 
       getMovies();
@@ -32,10 +33,18 @@ function App() {
       // setMovies(movies.filter(x => !favouriteMovies.includes(x)));
     }
 
+    const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(e.target.value);
+        setSearch(e.target.value);
+    }
+
   return (
   <div>
       <div className='container-fluid movies'>
-        <h1>Movies</h1>
+        <div className='movies-header'>
+          <h1>Movies</h1>
+          <SearchBox searchHandler={searchHandler} searchValue={search}></SearchBox>
+        </div>
         <div className='row'>
           <Movies movies={movies} favouriteComponent={AddFavourite} favouriteActionHandler={addToFavourites}></Movies>
         </div>
