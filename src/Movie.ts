@@ -1,9 +1,10 @@
 type Movie = {
+  id: number,
   imdbID: string,
-  Type: string,
-  Title: string,
-  Year: string,
-  Poster: string
+  type: string,
+  title: string,
+  year: string,
+  poster: string
 }
 
 export default Movie;
