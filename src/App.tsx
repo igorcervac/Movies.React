@@ -6,6 +6,7 @@ import Movies from './components/Movies';
 import AddFavourite from './components/AddFavourite';
 import RemoveFavourite from './components/RemoveFavourite';
 import SearchBox from './components/SearchBox';
+import favouriteMovieService from './services/FavouriteMovieService';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -17,20 +18,39 @@ function App() {
       const getMovies = async () => {
         const response = await fetch(`https://www.omdbapi.com?s=${search}&apikey=ebd94699`);
         const json = await response.json();
-        setMovies(json.Search ?? []);
-      }
+        const searchedMovies = json.Search ?? [];
+        setMovies(searchedMovies.map(
+          (x: any) => 
+          (
+            {
+              imdbID: x.imdbID, 
+              title: x.Title, 
+              poster: x.Poster, 
+              year: x.Year, 
+              type: x.Type
+            }
+          ) as Movie
+        ));
+      };
 
       getMovies();
     }, [search]);
 
+    useEffect(() => {
+      setFavouriteMovies(favouriteMovieService.getAll());
+    },[]);
+
     const addToFavourites = (movie: Movie)=> {
         setFavouriteMovies([...favouriteMovies, movie]);
         // setMovies(movies.filter(x => !favouriteMovies.includes(x)));
+        favouriteMovieService.add(movie);
     }
 
     const removeFromFavourites = (movie: Movie) => {
       setFavouriteMovies(favouriteMovies.filter(x => x.imdbID !== movie.imdbID));
       // setMovies(movies.filter(x => !favouriteMovies.includes(x)));
+      favouriteMovieService.remove(movie.id);
+
     }
 
     const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

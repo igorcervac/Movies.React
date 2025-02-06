@@ -90,11 +90,6 @@ body {
 	text-align: center;
 }
 
-.movies-header {
-  display: flex;
-  justify-content: space-between;
-}
-
 .searchbox {
   margin: 10px 0px;
   min-width: 200px;
@@ -102,4 +97,11 @@ body {
 
 h1 {
   font-weight: normal;
+}
+
+@media screen and (min-width: 768px) {
+  .movies-header {
+    display: flex;
+    justify-content: space-between;
+  }
 }
