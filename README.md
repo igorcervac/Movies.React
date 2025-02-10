@@ -3,7 +3,8 @@
 
 ### Movies application implemented in React and TypeScript
 
-![image](https://github.com/user-attachments/assets/e422e7e8-3720-4d76-b737-f30cfaeeb9ca)
+![image](https://github.com/user-attachments/assets/79621bff-d362-408f-8688-59853fbd600f)
+
 
 
 
