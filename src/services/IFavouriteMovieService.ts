@@ -1,7 +1,7 @@
 import Movie from "../Movie";
 
 export default interface IFavouriteMovieService {
-    getAll(): Movie[];
-    add(movie: Movie): Movie;
-    remove(id: number): void;
+    getAll(): Promise<Movie[]>;
+    add(movie: Movie): Promise<Movie>;
+    remove(id: number): Promise<void>;
 }

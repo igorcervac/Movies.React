@@ -6,7 +6,8 @@ import Movies from './components/Movies';
 import AddFavourite from './components/AddFavourite';
 import RemoveFavourite from './components/RemoveFavourite';
 import SearchBox from './components/SearchBox';
-import favouriteMovieService from './services/FavouriteMovieService';
+import favouriteMovieService from './services/ApiFavouriteMovieService';
+import FavouriteMovies from './components/FavouriteMovies';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -37,20 +38,25 @@ function App() {
     }, [search]);
 
     useEffect(() => {
-      setFavouriteMovies(favouriteMovieService.getAll());
+      const getFavouriteMovies = async () => {
+        const json = await favouriteMovieService.getAll();
+        setFavouriteMovies(json);
+      };
+
+      getFavouriteMovies();
+      
     },[]);
 
-    const addToFavourites = (movie: Movie)=> {
+    const addToFavourites = async (movie: Movie)=> {
         setFavouriteMovies([...favouriteMovies, movie]);
         // setMovies(movies.filter(x => !favouriteMovies.includes(x)));
-        favouriteMovieService.add(movie);
+        await favouriteMovieService.add(movie);
     }
 
-    const removeFromFavourites = (movie: Movie) => {
-      setFavouriteMovies(favouriteMovies.filter(x => x.imdbID !== movie.imdbID));
+    const removeFromFavourites = async (movie: Movie) => {
+      setFavouriteMovies(favouriteMovies.filter(x => x.id !== movie.id));
       // setMovies(movies.filter(x => !favouriteMovies.includes(x)));
-      favouriteMovieService.remove(movie.id);
-
+      await favouriteMovieService.remove(movie.id);
     }
 
     const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +78,7 @@ function App() {
       <div className='container-fluid movies'>
         <h1>Favourites</h1>
         <div className='row'>
-          <Movies movies={favouriteMovies} favouriteComponent={RemoveFavourite} favouriteActionHandler={removeFromFavourites}></Movies>
+          <FavouriteMovies movies={favouriteMovies} favouriteComponent={RemoveFavourite} favouriteActionHandler={removeFromFavourites}></FavouriteMovies>
         </div>
       </div>
 
