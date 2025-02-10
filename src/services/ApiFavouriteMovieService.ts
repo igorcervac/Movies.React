@@ -12,7 +12,7 @@ class ApiFavouriteMovieService implements IFavouriteMovieService {
 
     async add(movie: Movie): Promise<Movie> {
        const response = await fetch(this.apiUrl, {
-        "method": "POST",
+        method: "POST",
         headers: {"content-type": "application/json"},
         body: JSON.stringify(movie)
        });
@@ -21,8 +21,8 @@ class ApiFavouriteMovieService implements IFavouriteMovieService {
     }
 
     async remove(id: number):Promise<void> {
-        const response = await fetch(`${this.apiUrl}/${id}`, {
-            "method":"DELETE"
+        await fetch(`${this.apiUrl}/${id}`, {
+            method:"DELETE"
         });
     }
 }
