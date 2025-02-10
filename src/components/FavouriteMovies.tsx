@@ -1,7 +1,7 @@
 import React from 'react';
 import Movie from '../Movie'
 
-const Movies = (props: any) => {
+const FavouriteMovies = (props: any) => {
 
     const FavouriteComponent = props.favouriteComponent;
 
@@ -10,7 +10,7 @@ const Movies = (props: any) => {
             {
                 props.movies.map((x: Movie) => 
                 (
-                    <div key={x.imdbID} className='image-container d-flex justify-content-start m-3'>
+                    <div key={x.id} className='image-container d-flex justify-content-start m-3'>
                         <img src={x.poster} alt={x.title}></img>                        
                         <FavouriteComponent favouriteActionHandler={async () => await props.favouriteActionHandler(x)}/>
                     </div>
@@ -20,4 +20,4 @@ const Movies = (props: any) => {
     )
 }
 
-export default Movies;
+export default FavouriteMovies;

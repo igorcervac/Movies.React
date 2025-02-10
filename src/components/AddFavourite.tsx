@@ -2,7 +2,7 @@ import React from "react";
 
 const AddFavourite = (props: any) => {
     return (<div className='overlay d-flex align-items-center justify-content-center' 
-                onClick={props.favouriteActionHandler}>
+                onClick={async () => await props.favouriteActionHandler()}>
                 <span className='mr-2'>Add to Favourites</span>
                 <svg
                     width='1em'
