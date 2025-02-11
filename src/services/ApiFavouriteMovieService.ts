@@ -6,14 +6,20 @@ class ApiFavouriteMovieService implements IFavouriteMovieService {
     apiUrl = "https://movies-api-100.azurewebsites.net/api/movies";
 
     async getAll() : Promise<Movie[]> {
-        const response = await fetch(this.apiUrl);
+        const response = await fetch(this.apiUrl, {
+            headers: {
+            "Access-Control-Allow-Origin": "*"
+            }
+        });
         return await response.json();
     }
 
     async add(movie: Movie): Promise<Movie> {
        const response = await fetch(this.apiUrl, {
         method: "POST",
-        headers: {"content-type": "application/json"},
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "content-type": "application/json"},
         body: JSON.stringify(movie)
        });
 
@@ -22,7 +28,10 @@ class ApiFavouriteMovieService implements IFavouriteMovieService {
 
     async remove(id: number):Promise<void> {
         await fetch(`${this.apiUrl}/${id}`, {
-            method:"DELETE"
+            method:"DELETE",
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
         });
     }
 }
