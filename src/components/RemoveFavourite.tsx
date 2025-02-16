@@ -3,7 +3,7 @@ import React from "react";
 const RemoveFavourite = (props: any) => {
     return (<div className='overlay d-flex align-items-center justify-content-center' 
                 onClick={async () => props.favouriteActionHandler()}>
-                <span className='mr-2'>Remove from favourites</span>
+                <span className='mr-2'>Remove</span>
                 <svg
                     width='1em'
                     height='1em'

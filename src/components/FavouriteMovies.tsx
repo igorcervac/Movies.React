@@ -11,7 +11,7 @@ const FavouriteMovies = (props: any) => {
                 props.movies.map((x: Movie) => 
                 (
                     <div key={x.id} className='image-container d-flex justify-content-start m-3'>
-                        <img src={x.poster} alt={x.title}></img>                        
+                        <img src={x.poster} alt={x.title}></img>
                         <FavouriteComponent favouriteActionHandler={async () => await props.favouriteActionHandler(x)}/>
                     </div>
                 ))
