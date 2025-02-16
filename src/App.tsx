@@ -68,15 +68,16 @@ function App() {
   <div>
       <div className='container-fluid movies'>
         <div className='movies-header'>
-          <h1>Movies</h1>
+          <h2>Movies</h2>
           <SearchBox searchHandler={searchHandler} searchValue={search}></SearchBox>
         </div>
         <div className='row'>
           <Movies movies={movies} favouriteComponent={AddFavourite} favouriteActionHandler={addToFavourites}></Movies>
         </div>
       </div>
+
       <div className='container-fluid movies'>
-        <h1>Favourites</h1>
+        <h2>Favourites</h2>
         <div className='row'>
           <FavouriteMovies movies={favouriteMovies} favouriteComponent={RemoveFavourite} favouriteActionHandler={removeFromFavourites}></FavouriteMovies>
         </div>
