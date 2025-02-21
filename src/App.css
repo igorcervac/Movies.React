@@ -64,6 +64,10 @@ body {
 	flex-wrap: nowrap;
 }
 
+.movies {
+  margin: 15px 0px;
+}
+
 .image-container {
 	position: relative;
 	transition: transform 0.2s;
@@ -98,7 +102,8 @@ body {
 }
 
 h2 {
-  font-weight: bold;
+  font-weight: normal;
+  margin: 15px 0px;
 }
 
 @media screen and (min-width: 768px) {
@@ -113,4 +118,32 @@ input {
   padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+header {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  color: white;
+  background-color: black;
+  padding: 15px 40px;
+}
+
+header h1{
+  grid-column: span 6;
+}
+
+header nav {
+  grid-column: span 6;
+  justify-self: end;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+main {
+  padding: 15px 40px;
 }
