@@ -66,22 +66,31 @@ function App() {
 
   return (
   <div>
-      <div className='container-fluid movies'>
+      <header>
+        <h1>Movies</h1>
+        <nav>
+          <a href='/'>Home</a>
+          <a href='/about'>About</a>
+        </nav>
+      </header>
+      <main>
         <div className='movies-header'>
-          <h2>Movies</h2>
-          <SearchBox searchHandler={searchHandler} searchValue={search}></SearchBox>
+            <h2>All movies</h2>
+            <SearchBox searchHandler={searchHandler} searchValue={search}></SearchBox>
         </div>
-        <div className='row'>
-          <Movies movies={movies} favouriteComponent={AddFavourite} favouriteActionHandler={addToFavourites}></Movies>
+        <div className='container-fluid movies'>         
+          <div className='row'>
+            <Movies movies={movies} favouriteComponent={AddFavourite} favouriteActionHandler={addToFavourites}></Movies>
+          </div>
         </div>
-      </div>
 
-      <div className='container-fluid movies'>
-        <h2>Favourites</h2>
-        <div className='row'>
-          <FavouriteMovies movies={favouriteMovies} favouriteComponent={RemoveFavourite} favouriteActionHandler={removeFromFavourites}></FavouriteMovies>
+        <h2>Favourite  movies</h2>
+        <div className='container-fluid movies'>
+          <div className='row'>
+            <FavouriteMovies movies={favouriteMovies} favouriteComponent={RemoveFavourite} favouriteActionHandler={removeFromFavourites}></FavouriteMovies>
+          </div>
         </div>
-      </div>
+      </main>
 
     </div>
   );
