@@ -4,7 +4,7 @@
 ### Movies application implemented in React and TypeScript
 
 
-![image](https://github.com/user-attachments/assets/d114800d-31a9-4bc4-91a0-3e10dde42dc7)
+![image](https://github.com/user-attachments/assets/4b1abaa4-29cd-4934-ac24-4cc050f2a4af)
 
 
 Deployed at: [https://gray-dune-0e0473410.4.azurestaticapps.net](https://gray-dune-0e0473410.4.azurestaticapps.net) 
