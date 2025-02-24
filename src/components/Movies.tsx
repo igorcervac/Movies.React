@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AllMovies from "./AllMovies";
 import FavouriteMovies from "./FavouriteMovies";
 import SearchBox from "./SearchBox";
 import Movie from "../Movie";
-import favouriteMovieService from "../services/ApiFavouriteMovieService";
 import AddFavourite from "./AddFavourite";
 import RemoveFavourite from "./RemoveFavourite";
+import MoviesContext from "../MoviesContext";
 
 const Movies = () => {
 
@@ -13,6 +13,8 @@ const Movies = () => {
     const [favouriteMovies, setFavouriteMovies] = useState<Movie[]>([]);
   
     const [search, setSearch] = useState<string>('Star Wars');
+
+    const favouriteMoviesService = useContext(MoviesContext)!;
   
       useEffect(() => {
         const getMovies = async () => {
@@ -38,24 +40,24 @@ const Movies = () => {
   
       useEffect(() => {
         const getFavouriteMovies = async () => {
-          const json = await favouriteMovieService.getAll();
+          const json = await favouriteMoviesService.getAll();
           setFavouriteMovies(json);
         };
   
         getFavouriteMovies();
         
-      },[]);
+      });
   
       const addToFavourites = async (movie: Movie)=> {
           setFavouriteMovies([...favouriteMovies, movie]);
           // setMovies(movies.filter(x => !favouriteMovies.includes(x)));
-          await favouriteMovieService.add(movie);
+          await favouriteMoviesService.add(movie);
       }
   
       const removeFromFavourites = async (movie: Movie) => {
         setFavouriteMovies(favouriteMovies.filter(x => x.id !== movie.id));
         // setMovies(movies.filter(x => !favouriteMovies.includes(x)));
-        await favouriteMovieService.remove(movie.id);
+        await favouriteMoviesService.remove(movie.id);
       }
   
       const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

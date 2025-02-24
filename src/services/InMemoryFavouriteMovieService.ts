@@ -1,7 +1,7 @@
 import Movie from "../Movie";
 import IFavouriteMovieService from './IFavouriteMovieService'
 
-class InMemoryFavouriteMovieService implements IFavouriteMovieService {
+export default class InMemoryFavouriteMovieService implements IFavouriteMovieService {
     movies: Movie[] = [];
 
     async getAll(): Promise<Movie[]> {
@@ -22,6 +22,3 @@ class InMemoryFavouriteMovieService implements IFavouriteMovieService {
         return Promise.resolve();
     }
 }
-
-const favouriteMovieService: IFavouriteMovieService = new InMemoryFavouriteMovieService();
-export default favouriteMovieService;
