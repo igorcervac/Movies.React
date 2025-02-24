@@ -174,11 +174,13 @@ main {
 .about .card {
   grid-column: 3/11;
   grid-row: 2/10;
-  background-color: black;
+  /* background-color: black; */
   color: #fff;
   text-align: justify;
   padding: 30px 50px;
   border-radius: 5px;
+  border: 1px solid #fff;
+	background-color: transparent;
 }
 
 .about a {

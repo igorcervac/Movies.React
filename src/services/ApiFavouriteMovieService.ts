@@ -1,9 +1,12 @@
 import Movie from "../Movie";
 import IFavouriteMovieService from './IFavouriteMovieService'
 
-class ApiFavouriteMovieService implements IFavouriteMovieService {
-    // apiUrl = "https://localhost:7118/api/movies";
-    apiUrl = "https://movies-api-100.azurewebsites.net/api/movies";
+export default class ApiFavouriteMovieService implements IFavouriteMovieService {   
+   apiUrl:string = "";
+
+    constructor(apiUrl: string) {
+        this.apiUrl = apiUrl;        
+    }
 
     async getAll() : Promise<Movie[]> {
         const response = await fetch(this.apiUrl, {
@@ -35,6 +38,3 @@ class ApiFavouriteMovieService implements IFavouriteMovieService {
         });
     }
 }
-
-const favouriteMovieService: IFavouriteMovieService = new ApiFavouriteMovieService();
-export default favouriteMovieService;
