@@ -8,7 +8,7 @@ const AllMovies = (props: any) => {
     return (
         <>
             {
-                props.movies.map((x: Movie) => 
+                props.movies && props.movies.map((x: Movie) => 
                 (
                     <div key={x.imdbID} className='image-container d-flex justify-content-start'>
                         <img src={x.poster} alt={x.title}></img>                        
