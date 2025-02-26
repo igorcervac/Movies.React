@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import Movie from "../Movie";
 import SearchMovie from "../SearhMovie";
 
-function useFetch(url: string) {
+function useMovies(search: string) {
     const [movies, setMovies] = useState<Movie[]>();
 
     useEffect(() => {
         const getData = async () => {
-            const response = await fetch(url);
+            const response = await fetch(`https://www.omdbapi.com?s=${search}&apikey=ebd94699`);
             const json = await response.json() ?? [];
             const searchMovies = json.Search ?? [];            
 
@@ -25,9 +25,9 @@ function useFetch(url: string) {
               ));
         }
         getData();
-    }, [url]);
+    }, [search]);
 
     return {movies};
 }
 
-export default useFetch;
+export default useMovies;

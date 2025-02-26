@@ -6,7 +6,7 @@ import Movie from "../Movie";
 import AddFavourite from "./AddFavourite";
 import RemoveFavourite from "./RemoveFavourite";
 import MoviesContext from "../MoviesContext";
-import useFetch from "../hooks/useFetch";
+import useMovies from "../hooks/useMovies";
 
 const Movies = () => {
     const [search, setSearch] = useState<string>('Star Wars');
@@ -14,7 +14,7 @@ const Movies = () => {
           setSearch(e.target.value);
       }
 
-    const { movies } = useFetch(`https://www.omdbapi.com?s=${search}&apikey=ebd94699`);    
+    const { movies } = useMovies(search);    
   
     const [favouriteMovies, setFavouriteMovies] = useState<Movie[]>([]);
     const favouriteMoviesService = useContext(MoviesContext)!;  
