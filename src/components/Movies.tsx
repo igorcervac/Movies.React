@@ -6,38 +6,19 @@ import Movie from "../Movie";
 import AddFavourite from "./AddFavourite";
 import RemoveFavourite from "./RemoveFavourite";
 import MoviesContext from "../MoviesContext";
+import useFetch from "../hooks/useFetch";
 
 const Movies = () => {
-
-    const [movies, setMovies] = useState<Movie[]>([]);
-    const [favouriteMovies, setFavouriteMovies] = useState<Movie[]>([]);
-  
     const [search, setSearch] = useState<string>('Star Wars');
+      const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+          setSearch(e.target.value);
+      }
 
-    const favouriteMoviesService = useContext(MoviesContext)!;
+    const { movies } = useFetch(`https://www.omdbapi.com?s=${search}&apikey=ebd94699`);    
   
-      useEffect(() => {
-        const getMovies = async () => {
-          const response = await fetch(`https://www.omdbapi.com?s=${search}&apikey=ebd94699`);
-          const json = await response.json();
-          const searchedMovies = json.Search ?? [];
-          setMovies(searchedMovies.map(
-            (x: any) => 
-            (
-              {
-                imdbID: x.imdbID, 
-                title: x.Title, 
-                poster: x.Poster, 
-                year: x.Year, 
-                type: x.Type
-              }
-            ) as Movie
-          ));
-        };
-  
-        getMovies();
-      }, [search]);
-  
+    const [favouriteMovies, setFavouriteMovies] = useState<Movie[]>([]);
+    const favouriteMoviesService = useContext(MoviesContext)!;  
+
       useEffect(() => {
         const getFavouriteMovies = async () => {
           const json = await favouriteMoviesService.getAll();
@@ -59,11 +40,7 @@ const Movies = () => {
         // setMovies(movies.filter(x => !favouriteMovies.includes(x)));
         await favouriteMoviesService.remove(movie.id);
       }
-  
-      const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
-          setSearch(e.target.value);
-      }
+
 
     return (<>
         <div className='movies-header'>
