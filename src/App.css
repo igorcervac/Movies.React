@@ -132,6 +132,9 @@ header {
 
 header h1{
   grid-column: span 6;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1.5px;
 }
 
 header nav {
@@ -185,4 +188,8 @@ main {
 
 .about a {
   color: #fff;
+}
+
+.loading {
+  text-align: center;
 }

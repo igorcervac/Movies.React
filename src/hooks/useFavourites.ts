@@ -4,6 +4,8 @@ import MoviesContext from "../MoviesContext";
 
 export default function useFavourites(){
     const [favouriteMovies, setFavouriteMovies] = useState<Movie[]>([]);
+    const [loading, setLoading] = useState(false);
+
     const favouriteMoviesService = useContext(MoviesContext)!; 
     
     const addToFavourites = async (movie: Movie)=> {
@@ -19,14 +21,18 @@ export default function useFavourites(){
     }
 
     useEffect(() => {
+
+        setLoading(true);
+
         const getFavouriteMovies = async () => {
           const json = await favouriteMoviesService.getAll();
           setFavouriteMovies(json);
+          setLoading(false);
         };
   
         getFavouriteMovies();
         
-      });
+      }, [favouriteMoviesService]);
 
-      return { favouriteMovies, addToFavourites, removeFromFavourites };      
+      return { favouriteMovies, loading, addToFavourites, removeFromFavourites };      
 }

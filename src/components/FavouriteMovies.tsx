@@ -6,9 +6,9 @@ const FavouriteMovies = (props: any) => {
     const FavouriteComponent = props.favouriteComponent;
 
     return (
-        <>
+        <>          
             {
-                props.movies.map((x: Movie) => 
+                !props.loading && props.movies.map((x: Movie) => 
                 (
                     <div key={x.id} className='image-container d-flex justify-content-start'>
                         <img src={x.poster} alt={x.title}></img>
