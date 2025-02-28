@@ -14,25 +14,32 @@ const Movies = () => {
       }
 
     const { movies } = useMovies(search); 
-    const {favouriteMovies, addToFavourites, removeFromFavourites} = useFavourites();    
+    const {favouriteMovies, loading, addToFavourites, removeFromFavourites} = useFavourites();    
   
     return (<>
-        <div className='movies-header'>
+            <div className='movies-header'>
                 <h2>All movies</h2>
                 <SearchBox searchHandler={searchHandler} searchValue={search}></SearchBox>
             </div>
+
             <div className='container-fluid movies'>         
-            <div className='row'>
-                <AllMovies movies={movies} favouriteComponent={AddFavourite} favouriteActionHandler={addToFavourites}></AllMovies>
-            </div>
+                <div className='row'>
+                    <AllMovies movies={movies} favouriteComponent={AddFavourite} favouriteActionHandler={addToFavourites}></AllMovies>
+                </div>
             </div>
 
             <h2>Favourite  movies</h2>
-            <div className='container-fluid movies'>
-            <div className='row'>
-                <FavouriteMovies movies={favouriteMovies} favouriteComponent={RemoveFavourite} favouriteActionHandler={removeFromFavourites}></FavouriteMovies>
-            </div>
-            </div>
+            {
+                loading && (<div className='loading'>Loading...</div>)
+            }
+            {
+                !loading && (
+                <div className='container-fluid movies'>
+                    <div className='row'>
+                        <FavouriteMovies movies={favouriteMovies} loading={loading} favouriteComponent={RemoveFavourite} favouriteActionHandler={removeFromFavourites}></FavouriteMovies>
+                    </div>
+                </div>)
+            }
         </>);
 }
 
